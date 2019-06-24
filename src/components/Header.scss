@@ -1,0 +1,12 @@
+.header {
+
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+.header-nav__menu {
+  flex: 1;
+  text-transform: uppercase;
+}

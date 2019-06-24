@@ -1,0 +1,14 @@
+.nav-metas-container .layout-wrapper {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.topnav {
+  text-transform: uppercase;
+  display: flex;
+  justify-content: flex-end;
+  a {
+    padding: 10px 0 10px 20px;
+    font-size: .8rem;
+    display: block
+  }
+}

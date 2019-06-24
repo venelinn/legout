@@ -1,0 +1,85 @@
+@mixin font-smoothing {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin ellipsis($width: false) {
+	@if $width {
+		width: $width;
+	}
+
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+@mixin arrow($width, $color, $direction, $showContent: true) {
+	@if $showContent {
+		content: '';
+	}
+
+	width: 0;
+	height: 0;
+	border: $width solid transparent;
+
+	@if $direction=="right" {
+		border-left-color: $color;
+	}
+
+	@if $direction=="left" {
+		border-right-color: $color;
+	}
+
+	@if $direction=="top" {
+		border-bottom-color: $color;
+	}
+
+	@if $direction=="bottom" {
+		border-top-color: $color;
+	}
+}
+
+@mixin disableClick {
+	pointer-events: none;
+	cursor: default;
+}
+
+@mixin enableClick {
+	pointer-events: auto;
+	cursor: pointer;
+}
+
+@function calculateRem($size) {
+	$remSize: $size / 16px;
+	@return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+	font-size: $size;
+	font-size: calculateRem($size);
+}
+
+@mixin calc($property, $expression) {
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}
+
+// FONTS
+
+@mixin font-face($family, $file, $weight : normal, $style : normal) {
+	font-family: $family;
+    src: url(#{$file}.eot);
+    src: url(#{$file}.eot?#iefix) format('embedded-opentype'),
+         url(#{$file}.woff) format('woff'),
+         url(#{$file}.ttf) format('truetype'),
+         url(#{$file}.svg##{$family}) format('svg');
+    font-weight: $weight;
+    font-style: $style;
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}

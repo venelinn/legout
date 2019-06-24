@@ -1,0 +1,121 @@
+.nav-categories-container {
+  padding: $gutter_width 0;
+  li {
+    position: relative;
+  }
+
+  &.is-sticky {
+    height:100px;
+
+    .nav-categories {
+      background: $white;
+      left:0;
+      position:fixed;
+      bottom:inherit;
+      top:0;
+      width:100%;
+      z-index:200;
+
+      > ul {
+        li {
+          a {
+          padding:18px 0px 17px;
+          @include font-size(14px);
+
+          &:before {
+            bottom:0;
+          }
+          }
+        }
+        }
+      }
+    }
+
+    .nav-categories {
+    display: flex;
+    justify-content:center;
+    transition: all 0.5s $ease;
+    a {
+      color:$black;
+    }
+    > ul {
+      @include breakpoint($medium + 1) {
+        display: flex;
+        justify-content: space-between;
+      }
+      @include breakpoint(0 $medium) {
+        display:block;
+        border:2px solid #dbdbdb;
+        width:100%;
+      }
+
+      li {
+      margin:0 15px;
+
+      @include breakpoint(0 $medium) {
+        display:none;
+        border-bottom: 2px solid #dbdbdb;
+        margin:0;
+        padding:0 15px;
+
+        &:last-child {
+        border-bottom:none;
+        }
+
+        &:first-child {
+        display:block;
+        border-bottom:none;
+        }
+      }
+
+      a {
+        opacity:0.5;
+        padding:18px 0 17px;
+        text-transform:uppercase;
+        @include font-size(14px);
+        transition: all 0.5s $ease;
+        @include breakpoint(0 $medium) {
+          opacity:1;
+        }
+
+        &:before {
+        background: $black;
+        bottom:-3px;
+        content:'';
+        height:3px;
+        left:0;
+        position:absolute;
+        width:100%;
+        transform: scaleX(0);
+        transition: transform 0.5s $ease;
+        @include breakpoint(0 $medium) {
+          display:none;
+        }
+        }
+
+        &:hover, &.active {
+        opacity:1;
+
+        &:before {
+          transform: scaleX(1);
+        }
+        }
+      }
+
+      }
+
+      &.is-open {
+      //@include animation(fade-in 1s forwards);
+      @include breakpoint(0 $medium) {
+        z-index:10;
+        li {
+          display:block;
+          &:first-child {
+            background-color:#dbdbdb;
+          }
+        }
+      }
+      }
+    }
+  }
+}

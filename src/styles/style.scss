@@ -1,0 +1,190 @@
+
+//@import 'fonts';
+@import 'animation';
+
+@import 'reset';
+
+body {
+	background-color: #fff;
+	font-family: var(--body-font);
+	font-size: 1rem;
+	font-weight: normal;
+	line-height: 1.4;
+	color: var(--color-light);
+}
+
+body, html {
+	height: 100%;
+}
+
+/**
+ * ===================================================================
+ * Base style
+ *
+ * -------------------------------------------------------------------
+ */
+
+a {
+	color: currentColor;
+	transition: all 0.3s ease-in-out;
+}
+a:hover,
+a:focus,
+a:active {
+	color: var(--base-color);
+	outline: 0;
+}
+
+/**
+ * ===================================================================
+ * Typography & general theme styles
+ *
+ * -------------------------------------------------------------------
+ */
+h2, h3, h4, h5, h6{
+	font-family: var(--header-font);
+	color: inherit;
+	font-style: normal;
+	margin-bottom: 1.5rem;
+}
+
+h2 {
+	text-transform: uppercase;
+	color: var(--base-color);
+	letter-spacing: .2rem;
+	white-space: nowrap;
+	font-size: inherit;
+}
+
+h3 {
+	@include breakpoint($smedium + 1) {
+		font-size: 2rem;
+	}
+	@include breakpoint(0 $smedium) {
+		font-size: 1.5rem;
+	}
+}
+
+
+/**
+ * ===================================================================
+ * Page Layout
+ *
+ * -------------------------------------------------------------------
+ */
+
+#___gatsby,
+div[role="group"][tabindex] {
+	height: 100%;
+}
+
+
+.page{
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.page__header,
+.page__footer {
+  flex: 0 0 auto;
+}
+
+.page__container {
+	flex: 1 0 auto;
+	width: 100%;
+}
+
+.page__content {
+
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.section,
+.nav-metas {
+	width: 100%;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/**
+ * ===================================================================
+ * Misc Helper Styles
+ *
+ * -------------------------------------------------------------------
+ */
+
+.hide,
+.hidden {
+	display: none;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.antialiased {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.align-center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+button {
+	border: 0;
+	background: none;
+	outline: none;
+	padding: 0;
+	-webkit-appearance: button;
+}
+
+.sr-only {
+	position:absolute;
+	width:1px;
+	height:1px;
+	padding:0;
+	margin:-1px;
+	overflow:hidden;
+	clip:rect(0,0,0,0);
+	border:0
+}
+
+.is-accessible {
+	border: 0;
+	height: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 0;
+}
