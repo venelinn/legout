@@ -6,7 +6,7 @@ import MainNav from './MainNav'
 import TopNav from './TopNav'
 import logo from '../images/logo.png'
 
-import "./header.scss"
+import "./Header.scss"
 
 const Header = (props) => (
   <header className="page__header header">
