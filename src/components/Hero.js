@@ -23,8 +23,8 @@ const Hero = (props) => {
       </AliceCarousel>
 
       <div className="hero__container section">
-          <div class="hero__title">{hero.title}</div>
-          <p class="hero__desc">{hero.description.description}</p>
+          <div className="hero__title">{hero.title}</div>
+          <p className="hero__desc">{hero.description.description}</p>
       </div>
     </div>
   )
