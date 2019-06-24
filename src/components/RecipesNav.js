@@ -7,6 +7,7 @@ import "./RecipesNav.scss"
 
 const Recipes = props => {
   const recipe = props.data;
+  console.log(props.lang);
   return (
     <div className="nav-categories-container">
       <nav className="nav-categories">

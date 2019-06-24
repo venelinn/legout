@@ -1,8 +1,6 @@
 import React from "react"
 import * as PropTypes from "prop-types"
-import { Link, graphql } from 'gatsby'
-import Img from "gatsby-image"
-import styled from "styled-components"
+import { graphql } from 'gatsby'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -13,7 +11,6 @@ import Hero from "../components/Hero"
 const propTypes = {
   data: PropTypes.object.isRequired,
 }
-
 
 class IndexPage extends React.Component {
   render() {

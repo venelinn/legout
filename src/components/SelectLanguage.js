@@ -18,28 +18,21 @@ const Nav = styled.nav`
  * But, it's not recommended to call the API
  * directly, so consider removing entirely also.
  */
-const LangSwitchMsg = styled.div`
-  display: none;
-`
 
 const SelectLanguage = (props) => {
   const links = props.langsMenu.map(lang =>
     <Link to={lang.link} key={lang.langKey}>
-      <li selected={lang.selected}>
+      <span selected={lang.selected}>
         {lang.langKey}
-      </li>
+      </span>
     </Link>
   );
 
   return (
-    <Nav className="language-switcher">
-      <LangSwitchMsg>
-        <FormattedMessage id="selectLanguage" />
-      </LangSwitchMsg>
-      <ul>
-        {links}
-      </ul>
-    </Nav>
+    <>
+      <span className="is-accessible"><FormattedMessage id="selectLanguage" /></span>
+      {links}
+    </>
   );
 };
 
