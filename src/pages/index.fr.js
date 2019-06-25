@@ -5,7 +5,7 @@ import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Recipes from "../components/RecipesNav"
-import Grid from "../components/Grid"
+import Products from "../components/Products"
 import Hero from "../components/Hero"
 
 const propTypes = {
@@ -15,7 +15,7 @@ const propTypes = {
 class IndexPage extends React.Component {
   render() {
     const hero = this.props.data.hero.edges[0].node;
-    const products = this.props.data.product.edges;
+    const products = this.props.data.product.edges.map( (item) => {return item.node});
     const recipes = this.props.data.recipes.edges[0].node.mainMenu;
     return (
       <Layout data={this.props.data} location={this.props.location}>
@@ -23,7 +23,7 @@ class IndexPage extends React.Component {
         <Hero hero={hero} />
         <div className="section">
           <Recipes data={recipes} lang={this.props.pageContext.langKey} />
-          <Grid data={products} />
+          <Products data={products} />
         </div>
       </Layout>
     )
@@ -74,6 +74,13 @@ export const pageQuery = graphql`
           image {
             fluid(maxWidth: 500, quality: 80) {
               ...GatsbyContentfulFluid_withWebp_noBase64
+            }
+          }
+          video {
+            file {
+              url
+              fileName
+              contentType
             }
           }
           node_locale

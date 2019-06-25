@@ -1,22 +1,20 @@
-.portfolio-content {
+.product-content {
 	@include breakpoint($smedium + 1) {
-		padding-left: 2rem;
-		padding-right: 2rem;
-		margin: 2rem;
+		margin: 2rem 0;
 	}
 }
 .stack {
 	position: relative;
-    display: grid;
-    grid-gap: 15px;
-    @include breakpoint($smedium + 1) {
-	    grid-template-columns: repeat(auto-fit, 320px);
-	    justify-content: center;
-    }
+	display: grid;
+	grid-gap: 1.2rem;
+	@include breakpoint($smedium + 1) {
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		justify-content: center;
+	}
 }
 
 
-.folio-item {
+.product-item {
 	padding: 0;
 	height: 100%;
 	img {
@@ -28,66 +26,28 @@
 }
 
 
-.folio-item__link {
+.product-item__link {
 	display: block;
 	position: relative;
 	cursor: pointer;
-	@include breakpoint($smedium + 1) {
-		overflow: hidden;
-		&:before {
-			transition: all 0.5s ease-in-out;
-			content: '';
-			position: absolute;
-			background-color: transparent;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 1;
-		}
-		&:hover {
-			.gatsby-image-wrapper {
-				transform: scale(1.05);
-			}
-			&:before {
-				background-color: rgba(0, 0, 0, 0.7);
-			}
-			.folio-item-cell {
-				left: 0;
-			}
-		}
+	&[data-type="with-video"] {
 		.gatsby-image-wrapper {
-			transition: all .5s ease-in-out;
-			transform: scale(1);
+			transition: opacity .3s ease;
+		}
+		&--on {
+			.gatsby-image-wrapper {
+				opacity: 0;
+			}
 		}
 	}
 }
 
-
-.folio-item-table {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	@include breakpoint($smedium + 1) {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 2;
-	}
-}
-
-.folio-item-cell {
-	text-align: center;
-	position: relative;
-	@include breakpoint($smedium + 1) {
-		transition: all 0.5s ease-in-out;
-		left: -100%;
-	}
-	@include breakpoint(0 $smedium) {
-		margin-top: 5px;
-	}
+.product-item-video {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .folio-title {

@@ -29,7 +29,6 @@ class PageTemplate extends React.Component {
     const products = this.props.data.page.products
     const hero = this.props.data.page.hero
     const recipes = this.props.data.recipes.edges[0].node.mainMenu;
-    console.log(this.props.data.page.node_locale.split('-')[0])
     return (
       <Layout data={this.props.data} location={this.props.location}>
         <SEO title={this.props.data.page.title} lang={this.props.data.page.node_locale} />
@@ -38,22 +37,8 @@ class PageTemplate extends React.Component {
         ) : ''}
         <div className="section">
           <Recipes data={recipes} lang={this.props.data.page.node_locale.split('-')[0]} />
-          <Wrapper>
-            {products.map((product, index) => (
-              <div key={index} className="product">
-                <Img fluid={product.image.fluid} />
-                <div className="product__content">
-                  <h2>{product.title}</h2>
-                  <div
-                    dangerouslySetInnerHTML={{
-                    __html: product.description.childMarkdownRemark.html
-                  }}
-                  />
-                </div>
-              </div>
-            ))}
-          </Wrapper>
-          </div>
+          <Products data={products} />
+        </div>
       </Layout>
     )
   }
@@ -100,6 +85,13 @@ export const pageQuery = graphql`
           id
           fluid(maxWidth: 500, quality: 80) {
             ...GatsbyContentfulFluid_withWebp_noBase64
+          }
+        }
+        video {
+          file {
+            url
+            fileName
+            contentType
           }
         }
       }

@@ -4,52 +4,65 @@ import Fade from 'react-reveal/Fade';
 import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 
-import './portfolio.scss';
+import './products.scss';
 // https://416serg.me/building-a-custom-accessible-image-lightbox-in-gatsbyjs/
-class Portfolio extends React.Component {
+class Products extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      hover: false,
       showLightbox: false,
       selectedImage: null,
       moreData: null
     };
   }
+  hoverOn = (e) => {
+    this.setState({ hover: true });
+    this.refs[e.target.dataset.ref].play();
+  }
+
+  hoverOff = (e) => {
+    this.setState({ hover: false });
+    this.refs[e.target.dataset.ref].pause();
+  }
 
   render() {
-    const items = this.props.folio.projects;
+    const items = this.props.data;
+//    console.log(items);
     const { selectedImage, showLightbox, moreData } = this.state;
     return (
       <>
-        <div className='portfolio-content'>
+        <div className='product-content'>
           <Fade cascade bottom delay={600}>
           <div className='stack'>
             {items.map((item, index) => (
-              <div className='bgrid folio-item' key={index}>
+              <div className='bgrid product-item' key={index}>
                 <div
                   key={index}
-                  className='folio-item__link'
+                  className={`product-item__link${ this.state.hover ? ' video__item' : ''}`}
+                  data-type={ item.video ? 'with-video' : 'no-video'}
                   type='button'
+                  onMouseEnter={item.video ? this.hoverOn : () => true }
+                  onMouseLeave={item.video ? this.hoverOff : () => true }
                   onClick={() =>
                     this.setState({
                       showLightbox: true,
                       selectedImage: item.image,
                       moreData: {
-                        name: item.name,
-                        url: item.url,
-                        description: item.description,
-                        types: item.types
+                        title: item.title,
+                        description: item.description.childMarkdownRemark.html
                       }
                     })
                   }
                 >
                   <Img fluid={item.image.fluid} />
-                  <span className='folio-item-table'>
-                    <span className='folio-item-cell'>
-                      <h3 className='folio-title'>{item.name}</h3>
-                      <span className='folio-types'>{item.types}</span>
-                    </span>
-                  </span>
+                  {item.video ? (
+                  <div className='product-item-video'>
+                    <video className="product__video" data-ref={`vidRef${index}`} ref={`vidRef${index}`} preload="auto">
+                      <source src={item.video.file.url} type={item.video.file.contentType} />
+                    </video>
+                  </div>
+                  ) : ''}
                 </div>
               </div>
             ))}
@@ -66,21 +79,15 @@ class Portfolio extends React.Component {
             </div>
             <div className='modal__content'>
               <div className='modal__content__name'>
-                <a
-                  href={moreData.url}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  title='Visit'
-                >
-                </a>
+                {moreData.title}
               </div>
-              <p>{moreData.description}</p>
-              <div className='modal__categories'>{moreData.types}</div>
+              <div
+                dangerouslySetInnerHTML={{
+                __html: moreData.description
+              }}
+            />
             </div>
             <div className='modal__footer'>
-              {moreData.url ? (
-              <a href={moreData.url} target='_blank' rel='noopener noreferrer'>Visit</a>
-              ) : ''}
               <button
                 type='button'
                 onClick={() => this.setState({ showLightbox: false })}
@@ -96,4 +103,4 @@ class Portfolio extends React.Component {
 }
 
 
-export default Portfolio;
+export default Products;

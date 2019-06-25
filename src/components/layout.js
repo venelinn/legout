@@ -54,11 +54,11 @@ class Layout extends Component {
             <React.Fragment>
               <GlobalStyle />
             </React.Fragment>
-            <Header langsMenu={this.langsMenu} locale={this.langKey} />
-            <section className="page__container">
-              {this.children}
-            </section>
-            <Footer locale={this.langKey} />
+              <Header langsMenu={this.langsMenu} locale={this.langKey} />
+                <section className="page__container">
+                  {this.children}
+                </section>
+                <Footer locale={this.langKey} />
           </main>
         </ThemeProvider>
       </IntlProvider>

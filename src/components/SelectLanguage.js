@@ -23,7 +23,7 @@ const SelectLanguage = (props) => {
   const links = props.langsMenu.map(lang =>
     <Link to={lang.link} key={lang.langKey}>
       <span selected={lang.selected}>
-        {lang.langKey}
+        {lang.langKey === 'en' ? 'English' : 'Français'}
       </span>
     </Link>
   );
