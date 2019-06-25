@@ -12,3 +12,15 @@
 .alice-carousel__wrapper {
   height: 607px !important;
 }
+
+.hero__title,
+.hero__desc {
+	margin: 0 auto 10px;
+	max-width: 580px;
+	text-align: center
+}
+.hero__title {
+	@include font-size(17px);
+	text-transform: uppercase;
+	font-weight: $bold;
+}
