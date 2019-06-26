@@ -2,7 +2,7 @@ export const colors = {
   headingDefault: `#333`,
   bodyDefault: `#696969`,
   linkDefault: `#222`,
-  linkHoverDefault: `#f76b6a`,
+  linkHoverDefault: `#0e7ab6`,
   borderDefault: `#eee`,
   linkHoverMainNav: `#f76b6a`,
   backgroundHoverMobileNav: `#f4f4f4`,

@@ -3,7 +3,7 @@ import './fonts.scss'
 
 export default createGlobalStyle`
   :root {
-    --base-color: #ff0100;
+    --base-color: #0e7ab6;
     --color-dark: #313131;
     --color-light: #444;
     --page-max-width: 850px;

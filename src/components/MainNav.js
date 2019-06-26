@@ -19,21 +19,12 @@ const Nav = styled.nav`
 
   li a {
     display: block;
-    color: #333;
     padding: 1rem;
     text-decoration: none;
-    &:hover, &[aria-current], &.current {
-      color: ${props => props.theme.colors.linkHoverMainNav};
-    }
   }
   span {
     display: inline;
     padding: 1rem;
-  }
-
-  li a:hover,
-  .menu-btn:hover {
-    background-color: ${props => props.theme.colors.backgroundHoverMobileNav};
   }
 
   /* menu */
@@ -117,15 +108,15 @@ const Nav = styled.nav`
 
   @media ${device.laptop} {
     ul {
+      font-size: 17px;
       margin: auto;
-      text-align: center;
       line-height: 100px;
     }
     li {
       display: inline;
     }
     li a {
-      padding: 20px 30px;
+      padding: 1rem;
       display: inline;
     }
     li a:hover {
