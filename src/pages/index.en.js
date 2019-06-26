@@ -84,6 +84,7 @@ export const pageQuery = graphql`
               contentType
             }
           }
+          youtube
           node_locale
         }
       }

@@ -1,9 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Img from 'gatsby-image';
 import Fade from 'react-reveal/Fade';
-import { Dialog } from '@reach/dialog';
-import '@reach/dialog/styles.css';
+import Product from './product';
 
+import './grid.scss';
 import './products.scss';
 // https://416serg.me/building-a-custom-accessible-image-lightbox-in-gatsbyjs/
 class Products extends React.Component {
@@ -11,9 +12,6 @@ class Products extends React.Component {
     super(props);
     this.state = {
       hover: false,
-      showLightbox: false,
-      selectedImage: null,
-      moreData: null
     };
   }
   hoverOn = (e) => {
@@ -28,15 +26,14 @@ class Products extends React.Component {
 
   render() {
     const items = this.props.data;
-//    console.log(items);
-    const { selectedImage, showLightbox, moreData } = this.state;
+    const { hover } = this.state;
     return (
       <>
         <div className='product-content'>
           <Fade cascade bottom delay={600}>
-          <div className='stack'>
+          <div className="brick-wall">
             {items.map((item, index) => (
-              <div className='bgrid product-item' key={index}>
+              <div className={`brick brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`} key={index}>
                 <div
                   key={index}
                   className={`product-item__link${ this.state.hover ? ' video__item' : ''}`}
@@ -44,15 +41,10 @@ class Products extends React.Component {
                   type='button'
                   onMouseEnter={item.video ? this.hoverOn : () => true }
                   onMouseLeave={item.video ? this.hoverOff : () => true }
-                  onClick={() =>
-                    this.setState({
-                      showLightbox: true,
-                      selectedImage: item.image,
-                      moreData: {
-                        title: item.title,
-                        description: item.description.childMarkdownRemark.html
-                      }
-                    })
+                  onClick={() => {
+                    ReactDOM.render(<Product data={items} />, document.getElementById('brick-overlay'))
+                  }
+
                   }
                 >
                   <Img fluid={item.image.fluid} />
@@ -69,34 +61,12 @@ class Products extends React.Component {
           </div>
           </Fade>
         </div>
-        {showLightbox && (
-          <Dialog
-            className='modal'
-            onDismiss={() => this.setState({ showLightbox: false })}
-          >
-            <div className='modal__header'>
-              <Img fluid={selectedImage.fluid} />
-            </div>
-            <div className='modal__content'>
-              <div className='modal__content__name'>
-                {moreData.title}
-              </div>
-              <div
-                dangerouslySetInnerHTML={{
-                __html: moreData.description
-              }}
-            />
-            </div>
-            <div className='modal__footer'>
-              <button
-                type='button'
-                onClick={() => this.setState({ showLightbox: false })}
-              >
-                Close
-              </button>
-            </div>
-          </Dialog>
-        )}
+        <div className="brick-overlay" id="brick-overlay"></div>
+         {/* <Product
+          image={selectedImage}
+          title={moreData.title}
+          description={moreData.description}
+         /> */}
       </>
     );
   }

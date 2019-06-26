@@ -3,28 +3,6 @@
 		margin: 2rem 0;
 	}
 }
-.stack {
-	position: relative;
-	display: grid;
-	grid-gap: 1.2rem;
-	@include breakpoint($smedium + 1) {
-		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-		justify-content: center;
-	}
-}
-
-
-.product-item {
-	padding: 0;
-	height: 100%;
-	img {
-		display: block;
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
-	}
-}
-
 
 .product-item__link {
 	display: block;
@@ -49,39 +27,6 @@
 	width: 100%;
 	height: 100%;
 }
-
-.folio-title {
-	margin-bottom: 0;
-	@include breakpoint($medium + 1) {
-		padding: 0 2rem;
-		font-size: 2rem;
-	}
-	@include breakpoint(0 $medium) {
-		font-size: .8rem;
-	}
-	@include breakpoint($smedium + 1) {
-		color: #fff;
-	}
-	@include breakpoint(0 $smedium) {
-		color: var(--color-dark);
-		font-weight: normal;
-	}
-}
-
-.folio-types {
-	margin: 0;
-	padding: 0;
-	color: rgba(255, 255, 255, 0.6);
-	font-size: .8rem;
-	@include breakpoint($medium + 1) {
-		text-transform: uppercase;
-		letter-spacing: .1rem;
-	}
-	@include breakpoint(0 $medium) {
-		display: none;
-	}
-}
-
 
 /**
  * Popup Modal

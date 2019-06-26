@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Img from "gatsby-image"
+import Fade from 'react-reveal/Fade';
 
 import Slider from "react-slick";
 
@@ -23,6 +24,8 @@ class Hero extends React.Component {
 
   render() {
     const hero = this.props.hero;
+    var item_length = hero.image.length;
+    console.log(item_length);
     var settings = {
       dots: false,
       infinite: false,
@@ -30,17 +33,21 @@ class Hero extends React.Component {
       //arrows: hero.image.length > 1 ? true : false,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      afterChange: function(index){
+        console.log(index);
+      }
     };
     return (
-      <div className="hero">
+      <Fade delay={1000}>
+        <div className="hero">
         <Slider ref={c => (this.slider = c)} {...settings}>
           {hero.image.map((item, index) => (
             <Img key={index} fluid={item.fluid}/>
             ))
           }
         </Slider>
-        <div className="hero__container section">
+        <div className={`hero__container section${hero.image.length < 2 ? ' no--slider' : ''}`}>
           {hero.image.length > 1 ? (
           <div className="slick__nav">
             <button className="slick__arrow slick__arrow--prev" onClick={this.previous}>
@@ -59,6 +66,7 @@ class Hero extends React.Component {
           </div>
         </div>
       </div>
+      </Fade>
     );
   }
 }

@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Fade from 'react-reveal/Fade';
 
 import SelectLanguage from './SelectLanguage'
 
 import "./TopNav.scss"
 
 const TopNav = (props) => (
+  <Fade>
   <div className="nav-metas-container">
     <div className="layout-wrapper cf">
       <nav className="nav nav-metas">
@@ -41,6 +43,7 @@ const TopNav = (props) => (
       </nav>
     </div>
   </div>
+  </Fade>
 
 )
 

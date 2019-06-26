@@ -70,3 +70,13 @@ $ease : ease;
 $columns:12; // Number of columns
 $layout_width:1210px; // In pixels
 $gutter_width:24px; // In pixels
+
+
+$mq-mobile:600px;
+$mq-tablet:768px;
+$mq-default:$layout_width;
+$mq-large:1200px;
+$mq-infinite:9999999px;
+
+$brickCountPerRequest: 8;
+$brickAnimationDelay: 0.1;

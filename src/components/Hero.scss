@@ -13,6 +13,9 @@
 
 .hero__container__data {
 	margin-top: -3rem;
+	.no--slider & {
+		padding-top: 2rem;
+	}
 }
 
 .gatsby-image-wrapper {
@@ -20,7 +23,7 @@
 }
 
 .slick-slide {
-  height: 607px !important;
+  max-height: 600px;
 }
 
 .hero__title,

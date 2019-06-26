@@ -10,17 +10,50 @@ const slash = require(`slash`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return new Promise((resolve, reject) => {
+    graphql(
+      `
+        {
+          allContentfulPage(limit: 1000) {
+            edges {
+              node {
+                id
+                slug
+                node_locale
+                contentful_id
+              }
+            }
+          }
+        }
+      `
+    ).then(result => {
+      if (result.errors) {
+        reject(result.errors)
+      }
 
+      const pageTemplate = path.resolve(`./src/templates/page.js`)
+      _.each(result.data.allContentfulPage.edges, edge => {
+          const slug = edge.node.slug
+          createPage({
+            path: `/${edge.node.node_locale.split('-')[0]}/${edge.node.slug}/`,
+            component: slash(pageTemplate),
+            context: {
+              id: edge.node.id,
+              contentful_id:  edge.node.contentful_id,
+            },
+          })
+      })
+      resolve()
+    }).then(() => {
       graphql(
         `
           {
-            allContentfulPage(limit: 1000) {
+            allContentfulProduct(limit: 1000) {
               edges {
                 node {
                   id
-                  slug
-                  node_locale
                   contentful_id
+                  node_locale
+                  slug
                 }
               }
             }
@@ -32,30 +65,32 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         // Create template pages
-        const pageTemplate = path.resolve(`./src/templates/page.js`)
+        const sharedTemplate = path.resolve(`./src/templates/shared.js`)
         // We want to create a detailed page for each
         // category node. We'll just use the Contentful id for the slug.
-        _.each(result.data.allContentfulPage.edges, edge => {
+        _.each(result.data.allContentfulProduct.edges, edge => {
           // Get the URL slug from Contentful content type
-            const slug = edge.node.slug
-            // Gatsby uses Redux to manage its internal state.
-            // Plugins and sites can use functions like "createPage"
-            // to interact with Gatsby.
-            createPage({
-              // Each page is required to have a `path` as well
-              // as a template component. The `context` is
-              // optional but is often necessary so the template
-              // can query data specific to each page.
-              path: `/${edge.node.node_locale.split('-')[0]}/${edge.node.slug}/`,
-              component: slash(pageTemplate),
-              context: {
-                id: edge.node.id,
-                contentful_id:  edge.node.contentful_id,
-              },
-            })
+          const slug = edge.node.slug
+          // Gatsby uses Redux to manage its internal state.
+          // Plugins and sites can use functions like "createPage"
+          // to interact with Gatsby.
+          createPage({
+            // Each page is required to have a `path` as well
+            // as a template component. The `context` is
+            // optional but is often necessary so the template
+            // can query data specific to each page.
+            path: `/${edge.node.slug}/`,
+            component: slash(sharedTemplate),
+            context: {
+              id: edge.node.id,
+              lang: edge.node.node_locale,
+              contentful_id:  edge.node.contentful_id,
+            },
+          })
         })
 
         resolve()
       })
+    })
   })
 }

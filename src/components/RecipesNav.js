@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import Fade from 'react-reveal/Fade';
 import { FormattedMessage } from 'react-intl';
 
 import "./RecipesNav.scss"
@@ -8,7 +9,8 @@ import "./RecipesNav.scss"
 const Recipes = props => {
   const recipe = props.data;
   return (
-    <div className="nav-categories-container">
+    <Fade delay={500}>
+      <div className="nav-categories-container">
       <nav className="nav-categories">
         <span className="is-accessible">Navigation par catégories</span>
         <ul>
@@ -32,6 +34,7 @@ const Recipes = props => {
         </ul>
       </nav>
   </div>
+    </Fade>
   )
 }
 
