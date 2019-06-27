@@ -7,7 +7,7 @@ const languages = require('./src/data/languages');
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://ahimsayoga.jp`,
+    siteUrl: `https://thetaste.liberte.ca`,
     title: `Top Picks | The Taste Liberté`,
     description: `At Liberté, taste is infinite, and our obsession, endless.`,
     keywords: `yogurt, skyr`,
