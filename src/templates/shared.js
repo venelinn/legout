@@ -29,15 +29,15 @@ class sharedTemplate extends React.Component {
     //const products = this.props.data.page.products
     // console.log(this.props.data)
     // const hero = this.props.data.page.hero
-    const recipes = this.props.data.recipes.edges[0].node.mainMenu;
+    //const recipes = this.props.data.recipes.edges[0].node.mainMenu;
     return (
       <Layout data={this.props.data} location={this.props.location}>
-        <SEO title={this.props.data.page.title} lang={this.props.data.page.node_locale} />
+        {/* <SEO title={this.props.data.page.title} lang={this.props.data.page.node_locale} /> */}
         {/* {hero  ? (
           <Hero hero={hero[0]} />
         ) : ''} */}
         <div className="section">
-          <Recipes data={recipes} lang={this.props.data.page.node_locale.split('-')[0]} />
+          {/* <Recipes data={recipes} lang={this.props.data.page.node_locale.split('-')[0]} /> */}
           {/* <Products data={products} /> */}
         </div>
       </Layout>
