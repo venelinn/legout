@@ -155,20 +155,6 @@
   video {
 		height:100%;
 		width:100%;
-
-	&.gif-video {
-
-	  opacity:0;
-	  left:0;
-	  position:absolute;
-	  top:0;
-	  z-index:1;
-	  //@include transition(opacity 0.1s ease);
-	  &.is-playing {
-		opacity:1;
-		//z-index:1;
-	  }
-	}
   }
 
   &.brick-dark {

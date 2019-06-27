@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import Img from 'gatsby-image';
 import Fade from 'react-reveal/Fade';
 import Product from './product';
+import SVG from '../SVG';
 
+import './fixed_ratios.scss';
 import './grid.scss';
 import './products.scss';
 // https://416serg.me/building-a-custom-accessible-image-lightbox-in-gatsbyjs/
@@ -26,7 +28,6 @@ class Products extends React.Component {
 
   render() {
     const items = this.props.data;
-    const { hover } = this.state;
     return (
       <>
         <div className='product-content'>
@@ -36,25 +37,28 @@ class Products extends React.Component {
               <div className={`brick brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`} key={index}>
                 <div
                   key={index}
-                  className={`product-item__link${ this.state.hover ? ' video__item' : ''}`}
-
+                  className={`fixed-ratio${ item.video && item.image ? ' video__item' : ''}${ item.youtube ? ' fixed-ratio-double-brick' : ' fixed-ratio-square'} product-item__link`}
                   type='button'
-                  onMouseEnter={item.video ? this.hoverOn : () => true }
-                  onMouseLeave={item.video ? this.hoverOff : () => true }
+                  onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
+                  onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
                   onClick={() => {
-                    ReactDOM.render(<Product data={items} />, document.getElementById('brick-overlay'))
-                  }
-
+                      ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
+                    }
                   }
                 >
-                  <Img fluid={item.image.fluid} />
-                  {item.video ? (
-                  <div className='product-item-video'>
-                    <video className="product__video" data-ref={`vidRef${index}`} ref={`vidRef${index}`} preload="auto">
-                      <source src={item.video.file.url} type={item.video.file.contentType} />
-                    </video>
-                  </div>
-                  ) : ''}
+                  <div className="fixed-ratio-content">
+                    <Img fluid={item.image.fluid} />
+                    {item.video ? (
+                    <div className='product-item-video'>
+                      <video className="product__video gif-video" data-ref={`vidRef${index}`} ref={`vidRef${index}`} preload="auto">
+                        <source src={item.video.file.url} type={item.video.file.contentType} />
+                      </video>
+                    </div>
+                    ) : ''}
+                    <span className="brick-plus">
+                      <i className="icon icon-plus"><SVG icon='close' /></i>
+                    </span>
+                  </div >
                 </div>
               </div>
             ))}

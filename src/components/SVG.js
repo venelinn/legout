@@ -4,7 +4,12 @@ import PropTypes from 'prop-types'
 const icons = {
   close: {
     shape: (
-      <path class="cls" d="M45.9 49.5l41.8 41.8 3.6-3.5-41.9-41.9L91.3 4.1 87.7.5 45.9 42.4 4 .5.5 4.1l41.8 41.8L.5 87.8 4 91.3l41.9-41.8z"></path>
+      <path  d="M45.9 49.5l41.8 41.8 3.6-3.5-41.9-41.9L91.3 4.1 87.7.5 45.9 42.4 4 .5.5 4.1l41.8 41.8L.5 87.8 4 91.3l41.9-41.8z"></path>
+    )
+  },
+  plus: {
+    shape: (
+      <path d="M37.5 18H22V2.5h-4V18H2.5v4H18v15.5h4V22h15.5z"></path>
     )
   },
   facebook: {

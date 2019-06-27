@@ -15,7 +15,6 @@ const propTypes = {
 class IndexPage extends React.Component {
   render() {
     const hero = this.props.data.hero.edges[0].node;
-    console.log(this.props.data.product.edges[0].node)
     const products = this.props.data.product.edges[0].node.products;
     const recipes = this.props.data.recipes.edges[0].node.mainMenu;
     return (

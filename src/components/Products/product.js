@@ -6,7 +6,6 @@ import Fade from 'react-reveal/Fade';
 import './story.scss';
 
 const Product = (props) => {
-  console.log(props);
   const item = props.data;
   return (
       <div className="brick-overlay">
