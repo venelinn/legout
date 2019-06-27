@@ -37,7 +37,7 @@ class Products extends React.Component {
                 <div
                   key={index}
                   className={`product-item__link${ this.state.hover ? ' video__item' : ''}`}
-                  data-type={ item.video ? 'with-video' : 'no-video'}
+
                   type='button'
                   onMouseEnter={item.video ? this.hoverOn : () => true }
                   onMouseLeave={item.video ? this.hoverOff : () => true }

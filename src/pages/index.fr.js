@@ -15,7 +15,7 @@ const propTypes = {
 class IndexPage extends React.Component {
   render() {
     const hero = this.props.data.hero.edges[0].node;
-    const products = this.props.data.product.edges.map( (item) => {return item.node});
+    const products = this.props.data.product.edges[0].node.products;
     const recipes = this.props.data.recipes.edges[0].node.mainMenu;
     return (
       <Layout data={this.props.data} location={this.props.location}>
@@ -61,29 +61,33 @@ export const pageQuery = graphql`
         }
       }
     }
-    product: allContentfulProduct(filter: { node_locale: { eq: "fr-CA" } }) {
+    product: allContentfulSortedProducts(filter: { node_locale: { eq: "fr-CA" } }) {
       edges {
         node {
-          id
-          title
-          description {
-            childMarkdownRemark {
-              html
+          products {
+            id
+            title
+            description {
+              childMarkdownRemark {
+                html
+              }
             }
-          }
-          image {
-            fluid(maxWidth: 500, quality: 80) {
-              ...GatsbyContentfulFluid_withWebp_noBase64
+            image {
+              fluid(maxWidth: 500, quality: 80) {
+                ...GatsbyContentfulFluid_withWebp_noBase64
+              }
             }
-          }
-          video {
-            file {
-              url
-              fileName
-              contentType
+            video {
+              file {
+                url
+                fileName
+                contentType
+              }
             }
+            youtube
+            node_locale
+
           }
-          node_locale
         }
       }
     }
