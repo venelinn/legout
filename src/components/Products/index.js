@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import ReactDOM from 'react-dom';
 import Img from 'gatsby-image';
 import Fade from 'react-reveal/Fade';
@@ -9,6 +9,7 @@ import './fixed_ratios.scss';
 import './grid.scss';
 import './products.scss';
 // https://416serg.me/building-a-custom-accessible-image-lightbox-in-gatsbyjs/
+
 class Products extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,7 @@ class Products extends React.Component {
   }
   hoverOn = (e) => {
     this.setState({ hover: true });
+    console.log(this.refs[e.target.dataset.ref])
     this.refs[e.target.dataset.ref].play();
   }
 
@@ -33,8 +35,10 @@ class Products extends React.Component {
         <div className='product-content'>
           <Fade cascade bottom delay={600}>
           <div className="brick-wall">
-            {items.map((item, index) => (
-              <div className={`brick brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`} key={index}>
+            {items.map((item, index) => {
+              return(
+
+              <div className={`brick brick-light brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`} key={index}>
                 <div
                   key={index}
                   className={`fixed-ratio${ item.video && item.image ? ' video__item' : ''}${ item.youtube ? ' fixed-ratio-double-brick' : ' fixed-ratio-square'} product-item__link`}
@@ -49,19 +53,26 @@ class Products extends React.Component {
                   <div className="fixed-ratio-content">
                     <Img fluid={item.image.fluid} />
                     {item.video ? (
-                    <div className='product-item-video'>
-                      <video className="product__video gif-video" data-ref={`vidRef${index}`} ref={`vidRef${index}`} preload="auto">
-                        <source src={item.video.file.url} type={item.video.file.contentType} />
-                      </video>
-                    </div>
+                      <div className='product-item-video'>
+                        <video className="product__video gif-video" data-ref={`vidRef${index}`} ref={`vidRef${index}`} preload="auto">
+                          <source src={item.video.file.url} type={item.video.file.contentType} />
+                        </video>
+                      </div>
                     ) : ''}
-                    <span className="brick-plus">
-                      <i className="icon icon-plus"><SVG icon='close' /></i>
-                    </span>
+                    {item.youtube ? (
+                      <span class="btn-play">
+                        <i class="icon icon-play"><SVG icon='play' /></i>
+                      </span>
+                    ) : (
+                      <span className="brick-plus">
+                        <i className="icon icon-plus"><SVG icon='plus' /></i>
+                      </span>
+                    )}
                   </div >
                 </div>
               </div>
-            ))}
+              )}
+            )}
           </div>
           </Fade>
         </div>

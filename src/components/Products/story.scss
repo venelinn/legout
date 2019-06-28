@@ -27,6 +27,21 @@
 	@include breakpoint($large + 1) {
 		padding-left: 70px;
 	}
+	display: flex;
+	align-items: stretch;
+	transition: all .5s ease;
+}
+
+.story-content__wrap {
+	max-width: 580px;
+	padding: 40px 0 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.story-actions {
+	margin-top: auto;
 }
 
 .icon-close {
