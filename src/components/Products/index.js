@@ -36,41 +36,43 @@ class Products extends React.Component {
           <Fade cascade bottom delay={600}>
           <div className="brick-wall">
             {items.map((item, index) => {
+              const hasVideo = item.video;
+              const hasYoutube = item.youtube;
+              console.log(hasYoutube)
               return(
-
-              <div className={`brick brick-light brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`} key={index}>
-                <div
-                  key={index}
-                  className={`fixed-ratio${ item.video && item.image ? ' video__item' : ''}${ item.youtube ? ' fixed-ratio-double-brick' : ' fixed-ratio-square'} product-item__link`}
-                  type='button'
-                  onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
-                  onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
-                  onClick={() => {
-                      ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
+                <div className={`brick brick-light brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`} key={index}>
+                  <div
+                    key={index}
+                    className={`fixed-ratio${ item.video && item.image ? ' video__item' : ''}${ item.youtube ? ' fixed-ratio-double-brick' : ' fixed-ratio-square'} product-item__link`}
+                    type='button'
+                    onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
+                    onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
+                    onClick={() => {
+                        ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
+                      }
                     }
-                  }
-                >
-                  <div className="fixed-ratio-content">
-                    <Img fluid={item.image.fluid} />
-                    {item.video ? (
-                      <div className='product-item-video'>
-                        <video className="product__video gif-video" data-ref={`vidRef${index}`} ref={`vidRef${index}`} preload="auto">
-                          <source src={item.video.file.url} type={item.video.file.contentType} />
-                        </video>
-                      </div>
-                    ) : ''}
-                    {item.youtube ? (
-                      <span class="btn-play">
-                        <i class="icon icon-play"><SVG icon='play' /></i>
-                      </span>
-                    ) : (
-                      <span className="brick-plus">
-                        <i className="icon icon-plus"><SVG icon='plus' /></i>
-                      </span>
-                    )}
-                  </div >
+                  >
+                    <div className="fixed-ratio-content">
+                      <Img fluid={item.image.fluid} />
+                      {item.video ? (
+                        <div className='product-item-video'>
+                          <video className="product__video gif-video" data-ref={`vidRef${index}`} ref={`vidRef${index}`} preload="auto">
+                            <source src={item.video.file.url} type={item.video.file.contentType} />
+                          </video>
+                        </div>
+                      ) : ''}
+                      {item.youtube ? (
+                        <span class="btn-play">
+                          <i class="icon icon-play"><SVG icon='play' /></i>
+                        </span>
+                      ) : (
+                        <span className="brick-plus">
+                          <i className="icon icon-plus"><SVG icon='plus' /></i>
+                        </span>
+                      )}
+                    </div >
+                  </div>
                 </div>
-              </div>
               )}
             )}
           </div>
