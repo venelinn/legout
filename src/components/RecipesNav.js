@@ -26,7 +26,8 @@ const Recipes = props => {
           ))}
           <li>
             <Link
-              to={props.lang}
+              to={`/${props.lang}/`}
+              activeClassName="active"
             >
               <FormattedMessage id="viewall" />
             </Link>
