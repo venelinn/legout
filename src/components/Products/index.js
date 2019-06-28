@@ -19,13 +19,12 @@ class Products extends React.Component {
   }
   hoverOn = (e) => {
     this.setState({ hover: true });
-    console.log(this.refs[e.target.dataset.ref])
-    this.refs[e.target.dataset.ref].play();
+    e.currentTarget.querySelector('.product__video').play()
   }
 
   hoverOff = (e) => {
     this.setState({ hover: false });
-    this.refs[e.target.dataset.ref].pause();
+    this.refs[e.currentTarget.dataset.ref].pause();
   }
 
   render() {
@@ -38,32 +37,34 @@ class Products extends React.Component {
             {items.map((item, index) => {
               const hasVideo = item.video;
               const hasYoutube = item.youtube;
-              console.log(hasYoutube)
               return(
-                <div className={`brick brick-light brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`} key={index}>
+                <div
+                  key={index}
+                  data-ref={`vidRef${index}`}
+                  className={`brick brick-light brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`}
+                  onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
+                  onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
+                  onClick={() => {
+                      ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
+                    }
+                  }
+                  >
                   <div
-                    key={index}
                     className={`fixed-ratio${ item.video && item.image ? ' video__item' : ''}${ item.youtube ? ' fixed-ratio-double-brick' : ' fixed-ratio-square'} product-item__link`}
                     type='button'
-                    onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
-                    onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
-                    onClick={() => {
-                        ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
-                      }
-                    }
                   >
                     <div className="fixed-ratio-content">
                       <Img fluid={item.image.fluid} />
                       {item.video ? (
                         <div className='product-item-video'>
-                          <video className="product__video gif-video" data-ref={`vidRef${index}`} ref={`vidRef${index}`} preload="auto">
+                          <video playsInline={true} muted className="product__video gif-video" ref={`vidRef${index}`} preload="auto">
                             <source src={item.video.file.url} type={item.video.file.contentType} />
                           </video>
                         </div>
                       ) : ''}
                       {item.youtube ? (
-                        <span class="btn-play">
-                          <i class="icon icon-play"><SVG icon='play' /></i>
+                        <span className="btn-play">
+                          <i className="icon icon-play"><SVG icon='play' /></i>
                         </span>
                       ) : (
                         <span className="brick-plus">
