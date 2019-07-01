@@ -2,6 +2,9 @@ import React, {createRef} from 'react';
 import ReactDOM from 'react-dom';
 import Img from 'gatsby-image';
 import Fade from 'react-reveal/Fade';
+import ProductImageVideo from './ProductImageVideo';
+import ProductImage from './productImage';
+import ProductYoutube from './productYoutube';
 import Product from './product';
 import SVG from '../SVG';
 
@@ -24,7 +27,7 @@ class Products extends React.Component {
 
   hoverOff = (e) => {
     this.setState({ hover: false });
-    this.refs[e.currentTarget.dataset.ref].pause();
+    e.currentTarget.querySelector('.product__video').pause();
   }
 
   render() {
@@ -35,8 +38,6 @@ class Products extends React.Component {
           <Fade cascade bottom delay={600}>
           <div className="brick-wall">
             {items.map((item, index) => {
-              const hasVideo = item.video;
-              const hasYoutube = item.youtube;
               return(
                 <div
                   key={index}
@@ -49,30 +50,9 @@ class Products extends React.Component {
                     }
                   }
                   >
-                  <div
-                    className={`fixed-ratio${ item.video && item.image ? ' video__item' : ''}${ item.youtube ? ' fixed-ratio-double-brick' : ' fixed-ratio-square'} product-item__link`}
-                    type='button'
-                  >
-                    <div className="fixed-ratio-content">
-                      <Img fluid={item.image.fluid} />
-                      {item.video ? (
-                        <div className='product-item-video'>
-                          <video playsInline={true} muted className="product__video gif-video" ref={`vidRef${index}`} preload="auto">
-                            <source src={item.video.file.url} type={item.video.file.contentType} />
-                          </video>
-                        </div>
-                      ) : ''}
-                      {item.youtube ? (
-                        <span className="btn-play">
-                          <i className="icon icon-play"><SVG icon='play' /></i>
-                        </span>
-                      ) : (
-                        <span className="brick-plus">
-                          <i className="icon icon-plus"><SVG icon='plus' /></i>
-                        </span>
-                      )}
-                    </div >
-                  </div>
+                  { item.image && !item.video && !item.youtube ? <ProductImage data={item}/> : null }
+                  { item.video ? <ProductImageVideo data={item} index={index} /> : null }
+                  { item.youtube ? <ProductYoutube data={item}/> : null }
                 </div>
               )}
             )}

@@ -6,7 +6,6 @@ import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import Slide from 'react-reveal/Slide';
 
-
 import './story.scss';
 
 const Product = (props) => {
@@ -25,9 +24,17 @@ const Product = (props) => {
 
         <article className="story">
           <Fade delay={500} bottom>
-          <div className='story-media'>
-            <Img fluid={item.image.fluid} />
-          </div>
+            <div className="story-media fixed-ratio fixed-ratio-square active">
+              <div className="fixed-ratio-content">
+              {item.video ? (
+                <video playsInline={true} muted autoPlay preload="auto">
+                  <source src={item.video.file.url} type={item.video.file.contentType} />
+                </video>
+              ) : (
+                <Img fluid={item.image.fluid} />
+              )}
+              </div>
+            </div>
           </Fade>
           <Fade cascade bottom delay={1000}>
           <div className='story-content'>

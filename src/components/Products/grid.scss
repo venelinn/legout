@@ -315,18 +315,18 @@
       @include font-size(18px);
     }
   }
+}
 
-  .btn-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 76px;
-    width: 76px;
+.btn-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 76px;
+  width: 76px;
 
-    transform: translate(-50%, -50%);
-    path {
-      fill: white;
-    }
+  transform: translate(-50%, -50%);
+  path {
+    fill: white;
   }
 }
 

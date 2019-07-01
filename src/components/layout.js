@@ -17,7 +17,7 @@ import 'intl/locale-data/jsonp/fr';
 
 import GlobalStyle from '../styles/global'
 
-import Header from './Header'
+import Header from '../components/Header'
 import Footer from '../components/Footer'
 import favicon from '../images/favicon.png';
 

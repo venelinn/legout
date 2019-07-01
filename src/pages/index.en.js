@@ -59,6 +59,7 @@ export const pageQuery = graphql`
               ...GatsbyContentfulFluid_withWebp_noBase64
             }
           }
+          externalVideo
         }
       }
     }

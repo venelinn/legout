@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import { FormattedMessage } from 'react-intl';
 
-import { device } from '../theme/breakpoints'
+import { device } from '../../theme/breakpoints'
 
 const Nav = styled.nav`
   display: inline;

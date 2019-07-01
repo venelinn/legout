@@ -5,7 +5,7 @@ import Fade from 'react-reveal/Fade';
 
 import MainNav from './MainNav'
 import TopNav from './TopNav'
-import logo from '../images/logo.png'
+import logo from '../../images/logo.png'
 
 import "./Header.scss"
 

@@ -18,12 +18,23 @@
 	}
 }
 
-.gatsby-image-wrapper {
+.gatsby-image-wrapper,
+.slick-track,
+.slick-slide > div,
+.slick__item {
 	height: 100%;
 }
 
+.slick__item {
+	position: relative;
+	iframe {
+		width: 100%;
+	}
+}
+
 .slick-slide {
-  max-height: 600px;
+	//max-height: 600px;
+	height: 50vh;
 }
 
 .hero__title,

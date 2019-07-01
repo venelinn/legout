@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Fade from 'react-reveal/Fade';
 
-import SelectLanguage from './SelectLanguage'
+import SelectLanguage from '../SelectLanguage'
 
 import "./TopNav.scss"
 
