@@ -46,11 +46,7 @@ class Products extends React.Component {
                   onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
                   onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
                   onClick={() => {
-                      item.youtube ? (
-                        ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
-                      ) : (
-                        ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
-                      )
+                      ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
                     }
                   }
                   >

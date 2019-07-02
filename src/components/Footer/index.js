@@ -7,7 +7,7 @@ import FooterFr from './FooterFr'
 import "./Footer.scss"
 
 const Footer = (props) => (
-  <Fade bottom delay={600}>
+  <Fade  delay={600}>
     <footer className="page__footer footer" id="layout-footer">
       {props.locale == 'en' ? (
         <FooterEn />
