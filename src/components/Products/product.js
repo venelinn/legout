@@ -6,13 +6,14 @@ import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import Slide from 'react-reveal/Slide';
 
+
 import './story.scss';
 
 const Product = (props) => {
   const item = props.data;
   return (
     <Slide top>
-      <div>
+      <div className={`brick-overlay${ item.youtube ? ' brick-overlay-video' : ''}`}>
         <Zoom center delay={2000} >
         <button
           className="btn brick-close active"
@@ -22,11 +23,11 @@ const Product = (props) => {
         </button>
         </Zoom >
 
-        <article className="story">
+        <article className={`story${ item.youtube ? ' story-video' : ''}`}>
           <Fade delay={500} bottom>
-            <div className="story-media fixed-ratio fixed-ratio-square active">
+            <div className={`story-media fixed-ratio ${ item.youtube ? 'fixed-ratio-widescreen' : 'fixed-ratio-square'}`}>
               <div className="fixed-ratio-content">
-              {item.video ? (
+                { item.video ? (
                 <video playsInline={true} muted autoPlay preload="auto">
                   <source src={item.video.file.url} type={item.video.file.contentType} />
                 </video>
@@ -36,6 +37,7 @@ const Product = (props) => {
               </div>
             </div>
           </Fade>
+          {!item.youtube ? (
           <Fade cascade bottom delay={1000}>
           <div className='story-content'>
             <div className='story-content__wrap'>
@@ -49,6 +51,7 @@ const Product = (props) => {
             </div>
           </div>
           </Fade>
+          ) : '' }
         </article>
       </div>
     </Slide>

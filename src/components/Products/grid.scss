@@ -331,20 +331,21 @@
 }
 
 .brick-overlay {
-  margin: $gutter_width/2 0;
-  padding: 100px $gutter_width/2;
   position: relative;
   width: 100%;
+  @include breakpoint($mq-tablet + 1) {
+    margin: $gutter_width/2 0;
+    padding: 100px $gutter_width/2;
+  }
   @include breakpoint(0 $mq-tablet) {
     padding: 40px $gutter_width/2;
     max-width: 430px;
     margin: 0 auto;
   }
-  &.brick-overlay-video {
-    background: $black;
+  &-video {
+    background-color: $black;
     display: block;
     padding: 100px 90px;
-    opacity: 0;
     max-width: 100%;
     transition: opacity 0.5s $ease;
     @include breakpoint(0 900px) {
@@ -353,25 +354,18 @@
     @include breakpoint(0 $mq-mobile) {
       padding: 60px 30px;
     }
-    &.active {
-      opacity: 1;
-
-      &:before {
-        opacity: 1;
-      }
-    }
 
     &:before {
       background: $black;
       content: "";
       display: block;
       height: 100%;
-      opacity: 0;
       position: absolute;
       top: 0;
       width: 200vw;
       z-index: -1;
       translate: -50%, 0;
+      transform: translate(-50%,0);
       transition: opacity 0.5s $ease;
       @include breakpoint(0 1024px) {
         display: none;

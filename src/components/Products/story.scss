@@ -4,6 +4,9 @@
 
 .story-media {
 	flex: 0 0 50%;
+	.story-video & {
+			flex: none;
+	}
 }
 
 .story-title{

@@ -2,9 +2,9 @@ import React, {createRef} from 'react';
 import ReactDOM from 'react-dom';
 import Img from 'gatsby-image';
 import Fade from 'react-reveal/Fade';
-import ProductImageVideo from './ProductImageVideo';
-import ProductImage from './productImage';
-import ProductYoutube from './productYoutube';
+import BrickImageVideo from './BrickImageVideo';
+import BrickImage from './BrickImage';
+import BrickYoutube from './BrickYoutube';
 import Product from './product';
 import SVG from '../SVG';
 
@@ -46,25 +46,24 @@ class Products extends React.Component {
                   onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
                   onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
                   onClick={() => {
-                      ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
+                      item.youtube ? (
+                        ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
+                      ) : (
+                        ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
+                      )
                     }
                   }
                   >
-                  { item.image && !item.video && !item.youtube ? <ProductImage data={item}/> : null }
-                  { item.video ? <ProductImageVideo data={item} index={index} /> : null }
-                  { item.youtube ? <ProductYoutube data={item}/> : null }
+                  { item.image && !item.video && !item.youtube ? <BrickImage data={item}/> : null }
+                  { item.video ? <BrickImageVideo data={item} index={index} /> : null }
+                  { item.youtube ? <BrickYoutube data={item}/> : null }
                 </div>
               )}
             )}
           </div>
           </Fade>
         </div>
-        <div className="brick-overlay" id="brick-overlay"></div>
-         {/* <Product
-          image={selectedImage}
-          title={moreData.title}
-          description={moreData.description}
-         /> */}
+        <div id="brick-overlay"></div>
       </>
     );
   }
