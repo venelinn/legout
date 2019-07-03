@@ -63,3 +63,38 @@
 	stroke-width:.75;
 	stroke-miterlimit:10
 }
+
+.nav-sharebar {
+  margin:0;
+  opacity:0;
+  transition: opacity 1s $ease;
+	.icon {
+		width: 25px;
+		display: block;
+		svg {
+			width: 100%;
+		}
+	}
+  &.active {
+	}
+	opacity:1;
+
+  ul {
+		display: flex;
+	li {
+		+ li {
+			margin-left: .7rem;
+		}
+	  a, button {
+			padding:15px 5px 0 15px;
+			transition: opacity 0.5s $ease;
+			&:hover {
+				opacity:0.7;
+			}
+			* {
+				pointer-events:none;
+			}
+			}
+		}
+  }
+}

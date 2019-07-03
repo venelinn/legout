@@ -21,7 +21,7 @@ const TopNav = (props) => (
               <li>
                 <a href="http://www.liberte.ca/en/contact-us" target="_blank">Contact us</a>
               </li>
-              <li>
+              <li className="langbar">
                 <SelectLanguage langsMenu={props.langsMenu} />
               </li>
             </>
@@ -34,7 +34,7 @@ const TopNav = (props) => (
 						<li>
 							<a href="http://www.liberte.ca/fr/nous-joindre" target="_blank">Nous joindre</a>
 						</li>
-						<li>
+						<li className="langbar">
               <SelectLanguage langsMenu={props.langsMenu} />
 						</li>
             </>

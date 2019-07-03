@@ -68,9 +68,11 @@ export const sharedQuery = graphql`
         description {
           description
         }
-        image {
-          fluid(maxWidth: 1500, quality: 80) {
-            ...GatsbyContentfulFluid_withWebp_noBase64
+        assets {
+          image {
+            fluid(maxWidth: 1500, quality: 80) {
+              ...GatsbyContentfulFluid_withWebp_noBase64
+            }
           }
         }
       }

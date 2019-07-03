@@ -329,6 +329,9 @@
     fill: white;
   }
 }
+#brick-overlay {
+  width: 100%;
+}
 
 .brick-overlay {
   position: relative;
@@ -347,7 +350,11 @@
     display: block;
     padding: 100px 90px;
     max-width: 100%;
+    opacity: 0;
     transition: opacity 0.5s $ease;
+    &.active {
+      opacity: 1;
+    }
     @include breakpoint(0 900px) {
       padding: 60px 45px;
     }

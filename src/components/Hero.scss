@@ -7,12 +7,12 @@
 
 .hero__container {
 	background-color: #fff;
-	margin-top: -3rem;
+	//margin-top: -3rem;
 	position: relative;
 }
 
 .hero__container__data {
-	margin-top: -3rem;
+	//margin-top: -3rem;
 	.no--slider & {
 		padding-top: 2rem;
 	}
@@ -33,7 +33,7 @@
 }
 
 .slick-slide {
-	//max-height: 600px;
+	min-height: 500px;
 	height: 50vh;
 }
 

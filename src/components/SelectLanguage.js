@@ -2,15 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { FormattedMessage } from 'react-intl';
-import styled from 'styled-components'
-
-const Nav = styled.nav`
-  a {
-    &[aria-current] {
-      display: none;
-    }
-  }
-`
 
 /*
  * Rather than hide this, a better way would
@@ -21,7 +12,11 @@ const Nav = styled.nav`
 
 const SelectLanguage = (props) => {
   const links = props.langsMenu.map(lang =>
-    <Link to={lang.link} key={lang.langKey}>
+    <Link
+      to={lang.link}
+      key={lang.langKey}
+      activeClassName="active"
+      >
       <span selected={lang.selected}>
         {lang.langKey === 'en' ? 'English' : 'Français'}
       </span>

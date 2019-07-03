@@ -1,6 +1,5 @@
 import React, {createRef} from 'react';
 import ReactDOM from 'react-dom';
-import Img from 'gatsby-image';
 import Fade from 'react-reveal/Fade';
 import BrickImageVideo from './BrickImageVideo';
 import BrickImage from './BrickImage';
@@ -18,6 +17,7 @@ class Products extends React.Component {
     super(props);
     this.state = {
       hover: false,
+      brick: false,
     };
   }
   hoverOn = (e) => {
@@ -29,6 +29,28 @@ class Products extends React.Component {
     this.setState({ hover: false });
     e.currentTarget.querySelector('.product__video').pause();
   }
+
+  showBrick = (e, index) => {
+    this.removeBrick();
+    let topBrick = document.querySelector(`.brick-${index}`).getBoundingClientRect().top;
+    let brickWrapper = document.createElement('div');
+    brickWrapper.id = 'brick-overlay';
+    let placeBrick = Array.from(document.querySelectorAll('.brick')).slice(index).find((brick) => {
+      return brick.getBoundingClientRect().top !== topBrick;
+    })
+    placeBrick.parentElement.insertBefore(brickWrapper, placeBrick)
+    // TODO: handle last index
+    ReactDOM.render(<Product data={this.props.data[index]} />, brickWrapper)
+    this.setState({ brick: brickWrapper });
+
+  }
+
+  removeBrick = () => {
+    if(this.state.brick) {
+      this.state.brick.remove()
+    }
+  }
+
 
   render() {
     const items = this.props.data;
@@ -42,11 +64,11 @@ class Products extends React.Component {
                 <div
                   key={index}
                   data-ref={`vidRef${index}`}
-                  className={`brick brick-light brick-${index + 1} ${ item.youtube ? ' brick-double brick-video' : ''}`}
+                  className={`brick brick-light brick-${index} ${ item.youtube ? ' brick-double brick-video' : ''}`}
                   onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
                   onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
-                  onClick={() => {
-                      ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
+                  onClick={(event) => { this.showBrick(event, index);
+                      //ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
                     }
                   }
                   >
@@ -59,11 +81,10 @@ class Products extends React.Component {
           </div>
           </Fade>
         </div>
-        <div id="brick-overlay"></div>
+        {/* <div id="brick-overlay"></div> */}
       </>
     );
   }
 }
-
 
 export default Products;

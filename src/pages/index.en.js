@@ -53,13 +53,19 @@ export const pageQuery = graphql`
           description {
             description
           }
-          image {
-            title
-            fluid(maxWidth: 1500, quality: 80) {
-              ...GatsbyContentfulFluid_withWebp_noBase64
+          assets {
+            image {
+              fluid(maxWidth: 1500, quality: 80) {
+                ...GatsbyContentfulFluid_withWebp
+              }
             }
+            logo {
+              fluid(maxWidth: 500, quality: 80) {
+                ...GatsbyContentfulFluid_withWebp_noBase64
+              }
+            }
+            youtube
           }
-          externalVideo
         }
       }
     }
@@ -74,6 +80,7 @@ export const pageQuery = graphql`
                 html
               }
             }
+            slug
             image {
               fluid(maxWidth: 500, quality: 80) {
                 ...GatsbyContentfulFluid_withWebp_noBase64

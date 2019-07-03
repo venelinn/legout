@@ -9,9 +9,17 @@
   a {
     padding: 10px 0 10px 20px;
     font-size: .7rem;
-    display: block
+    display: inline-block;
   }
-  [aria-current="page"] {
-    display: none;
+}
+
+.langbar {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  a {
+    &.active {
+      display: none;
+    }
   }
 }

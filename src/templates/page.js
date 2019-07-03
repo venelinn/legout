@@ -1,7 +1,6 @@
 import React from "react"
 import * as PropTypes from "prop-types"
-import { Link, graphql } from 'gatsby'
-import Img from "gatsby-image"
+import { graphql } from 'gatsby'
 import styled from "styled-components"
 
 import Layout from "../components/layout"
@@ -67,10 +66,18 @@ export const pageQuery = graphql`
         description {
           description
         }
-        image {
-          fluid(maxWidth: 1500, quality: 80) {
-            ...GatsbyContentfulFluid_withWebp_noBase64
+        assets {
+          image {
+            fluid(maxWidth: 1500, quality: 80) {
+              ...GatsbyContentfulFluid_withWebp
+            }
           }
+          logo {
+            fluid(maxWidth: 500, quality: 80) {
+              ...GatsbyContentfulFluid_withWebp_noBase64
+            }
+          }
+          youtube
         }
       }
       products {

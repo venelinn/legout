@@ -4,8 +4,6 @@ import Img from "gatsby-image"
 import Fade from 'react-reveal/Fade';
 import SVG from '../components/SVG';
 import Slider from "react-slick";
-import Plyr from 'react-plyr';
-
 
 import "slick-carousel/slick/slick.css";
 //import "slick-carousel/slick/slick-theme.css";
@@ -26,7 +24,7 @@ class Hero extends React.Component {
 
   render() {
     const hero = this.props.hero;
-    var item_length = hero.image.length;
+    var item_length = hero.assets.length;
     //console.log(item_length);
     var settings = {
       dots: false,
@@ -41,42 +39,26 @@ class Hero extends React.Component {
         // console.log(index);
       }
     };
-    const ytIframe = '<iframe className="embed-player slide-media" width="980" height="520" src="https://www.youtube.com/embed/QV5EXOFcdrQ?enablejsapi=1&controls=0&fs=0&iv_load_policy=3&rel=0&showinfo=0&loop=1&playlist=QV5EXOFcdrQ&start=1" frameborder="0" allowfullscreen></iframe>'
+    const ytIframe = '<iframe className="embed-player slide-media" width="980" height="520" src="https://www.youtube.com/embed/QV5EXOFcdrQ?enablejsapi=1&controls=0&fs=0&iv_load_policy=3&autoplay=1&rel=0&showinfo=0&loop=1&playlist=QV5EXOFcdrQ&start=1" frameborder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>'
     return (
       <Fade delay={1000}>
         <div className="hero">
         <Slider ref={c => (this.slider = c)} {...settings}>
-          {hero.image.map((item, index, arr) => {
+          {hero.assets.map((item, index, arr) => {
             return (
               <div
                 key={index}
                 className="slick__item"
               >
-                { index === arr.length - 10 ? (
-                  <>
-                    <Plyr
-                      type="youtube" // or "vimeo"
-                      autoPlay
-                      playsInline
-                      muted
-                      videoId="QV5EXOFcdrQ"
-                    />
-                    <span className="btn-play">
-                      <i className="icon icon-play"><SVG icon='play' /></i>
-                    </span>
-                  </>
-                  ) : (
-                    <Img fluid={item.fluid}/>
-                  )
-                }
+              <Img fluid={item.image.fluid}/>
               </div>
             )
           })
           }
         </Slider>
 
-        <div className={`hero__container section${hero.image.length < 2 ? ' no--slider' : ''}`}>
-          {hero.image.length > 1 ? (
+        <div className={`hero__container section${hero.assets.length < 2 ? ' no--slider' : ''}`}>
+          {hero.assets.length > 1 ? (
           <div className="slick__nav">
             <button className="slick__arrow slick__arrow--prev" onClick={this.previous}>
               <span className="slick__icon"></span>

@@ -1,5 +1,9 @@
 .nav-categories-container {
-  padding: $gutter_width 0;
+  position: sticky;
+  top: -1px;
+  z-index: 111;
+  background-color: #fff;
+  padding: $gutter_width 0 5px;
   li {
     position: relative;
   }
