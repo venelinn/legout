@@ -36,7 +36,7 @@ class Product extends React.Component {
           <Zoom center delay={2000} >
           <button
             className="btn brick-close active"
-            onClick={() => console.log('closeee')}
+            onClick={this.props.triggerClose}
             >
               <i className="icon icon-close"><SVG icon='close' /></i>
           </button>

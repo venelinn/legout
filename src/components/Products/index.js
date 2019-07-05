@@ -40,7 +40,7 @@ class Products extends React.Component {
     })
     placeBrick.parentElement.insertBefore(brickWrapper, placeBrick)
     // TODO: handle last index
-    ReactDOM.render(<Product data={this.props.data[index]} />, brickWrapper)
+    ReactDOM.render(<Product data={this.props.data[index]} triggerClose={this.removeBrick} />, brickWrapper)
     this.setState({ brick: brickWrapper });
 
   }
@@ -67,13 +67,10 @@ class Products extends React.Component {
                   className={`brick brick-light brick-${index} ${ item.youtube ? ' brick-double brick-video' : ''}`}
                   onMouseEnter={item.video && item.image ? this.hoverOn : () => true }
                   onMouseLeave={item.video && item.image ? this.hoverOff : () => true }
-                  onClick={(event) => { this.showBrick(event, index);
-                      //ReactDOM.render(<Product data={item} />, document.getElementById('brick-overlay'))
-                    }
-                  }
-                  >
-                  { item.image && !item.video && !item.youtube ? <BrickImage data={item}/> : null }
-                  { item.video ? <BrickImageVideo data={item} index={index} /> : null }
+                  onClick={(event) => { this.showBrick(event, index)}}
+                >
+                  { item.image && !item.video && !item.youtube ? <BrickImage data={item} /> : null }
+                  { item.video ? <BrickImageVideo data={item}  index={index} /> : null }
                   { item.youtube ? <BrickYoutube data={item}/> : null }
                 </div>
               )}
